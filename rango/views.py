@@ -3,7 +3,8 @@ from rango.models import Category
 from rango.models import Page
 from rango.forms import PageForm
 from rango.forms import CategoryForm
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.core.urlresolvers import reverse
 
 
 def index(request):
@@ -17,7 +18,9 @@ def index(request):
 
 
 def about(request):
-    return HttpResponse("Rango says here is the about page. <a href='/rango/'>View index page</a>")
+    print(request.method)
+    print(request.user)
+    return render(request, 'rango/about.html', {})
 
 
 def show_category(request, category_name_slug):
